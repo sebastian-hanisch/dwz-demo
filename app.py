@@ -74,10 +74,23 @@ einen **Bremsfaktor**, Neue eine **Erst-DWZ-Korrektur**, nach unten gilt eine **
 (**Sonderwertung**). 2026 hob der Deutsche Schachbund die Skala außerdem einmalig an. Diese Demo ist ein **Zusatzstück der Ranking-Linie** hinter der Elo-Inflation und misst in einem
 simulierten Feld, was diese Gegenmittel erzeugen, wann sie **überschießen** und woran man es erkennt (ein **Anker** konstanter Stärke).
 
-Weiter unten: neun **🔬 Experimente** mit Verdikt, **🚧 Wo die Annahmen enden** und der Expander **📐 Mathematische Formulierung**. Alle Regeln folgen der Wertungsordnung des DSB, gültig ab
+Direkt darunter: der Expander **💬 In einfachen Worten**. Weiter unten: neun **🔬 Experimente** mit Verdikt, **🚧 Wo die Annahmen enden** und der Expander **📐 Mathematische Formulierung**. Alle Regeln folgen der Wertungsordnung des DSB, gültig ab
 8. Juni 2026; die Zahlen sind Simulation und sagen nichts über die reale DWZ.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/dwz-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Die **Deutsche Wertungszahl (DWZ)** ist ein Elo-Verfahren, das die Skala nicht sich selbst überlässt. Wer jung ist oder gut abschneidet, bekommt einen **Erfolgsaufschlag**, schwache Spieler eine **Bremse**, Neue eine **Korrektur** ihrer ersten Zahl, nach unten gilt eine **Untergrenze**, und wer weit über seiner Zahl spielt, wird für seine Gegner höher gewertet (**Sonderwertung**). 2026 wurde die Skala außerdem einmal angehoben.
+
+Die Demo simuliert ein Feld, in dem Spieler gehen, Neue kommen und lernen und deren wahre Stärke bekannt ist. So lässt sich messen, was diese Korrekturen erzeugen: Sie wirken gegen die Deflation, zahlen aber Punkte aus, die nirgends abgezogen werden, und können überschießen. Die neun Experimente weiter unten zeigen je einen Fall mit einem Verdikt. Alle Zahlen sind Simulation und sagen nichts über die wirkliche DWZ.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/dwz-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 
 with st.expander("So rechnet die DWZ", expanded=True):
     st.markdown(
@@ -290,6 +303,28 @@ st.markdown(
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/dwz-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben ist ein Feld von Spielern, die Turniere spielen, kommen und gehen; ihre wahren Stärken kennt nur die Simulation. Gesucht ist, wie sich die Wertungen $R$ nach den Regeln der Wertungsordnung gegenüber diesen Stärken entwickeln, die Drift $D_t$.
+
+| Symbol | Bedeutung |
+|---|---|
+| $R_0$, $R_n$ | Wertung vor bzw. nach einem Turnier |
+| $D$ | Wertungsunterschied zweier Spieler |
+| $\sigma$ | Standardabweichung der Normalverteilung der Gewinnerwartung, $200\sqrt{2}$ |
+| $P(D)$ | Gewinnerwartung bei Unterschied $D$ |
+| $W$, $W_e$ | erzielte Punkte und Punkterwartung im Turnier |
+| $K$, $K_0$, $a$, $b$ | Entwicklungsfaktor, sein Grundwert, Erfolgsaufschlag und Bremsfaktor |
+| $n$, $p'$ | Zahl der Partien und Schritt-Quote der Gesamtiteration |
+| $R_i$, $R_1$, $r$ | Iterationswert, Erst-DWZ und Aufschlag der Erst-DWZ-Korrektur |
+| $R_h$ | Turnierleistung: die Wertung, bei der die Punkterwartung der erzielten Punktzahl entspricht |
+| $D_t$ | Drift nach Saison $t$: Mittel von Wertung minus Stärke, gegenüber dem Ende der Einlaufzeit |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/dwz-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Gewinnerwartung.** Für Spieler 1 gegen 2 mit $D = R_1 - R_2$: $P(D) = \Phi(D/\sigma)$, $\sigma = 200\sqrt{2} \approx 282{,}8$ (WO 3.3.1). Die Punkterwartung eines Turniers ist $W_e = \sum P(D_i)$,
