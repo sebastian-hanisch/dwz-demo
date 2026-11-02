@@ -1,7 +1,6 @@
 # DWZ: Gegenmittel gegen Deflation – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-dwz-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-dwz-demo.streamlit.app/)**
 
 Zusatzstück **7c** der **Ranking-Linie** (Konzepte-Demo, Methodenreihe), Fortsetzung von `elo-inflation-demo` (7b): Die **Deutsche Wertungszahl (DWZ)** ist ein Elo-Verfahren, das die Skala nicht sich selbst
 überlässt. Sie hat **Gegenmittel gegen Deflation** (Erfolgsaufschlag a, Bremsfaktor b, Erst-DWZ-Korrektur r, Untergrenze 1100, Sonderwertung bei mehr als 300 Punkten über der DWZ) und seit 2026 eine
